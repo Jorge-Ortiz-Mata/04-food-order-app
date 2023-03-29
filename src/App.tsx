@@ -1,6 +1,6 @@
 import Header from "./components/Header/Header";
 import MainWelcome from "./components/Welcome/MainWelcome";
-import MainBody from "./components/Body/MainBody";
+import MealsSection from "./components/Meals/MealsSection";
 
 function App() {
 
@@ -12,7 +12,7 @@ function App() {
     <>
       <Header title='Hello My title' />
       <MainWelcome />
-      <MainBody />
+      <MealsSection />
     </>
   );
 }
