@@ -5,22 +5,27 @@ interface MealFormProps {
 }
 
 const MealForm = ({onSubmitAmount}:MealFormProps) => {
-  // const [value, setValue] = useState();
+  const [value, setValue] = useState(0);
 
-  // const handleChange = (value: number):void => {
-
-  // }
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>):void => {
+    const amount = e.target.value;
+    setValue(parseInt(amount));
+  }
 
   const handleSubmit = (e: React.SyntheticEvent): void => {
     e.preventDefault();
-  //   onSubmitAmount(10);
+    onSubmitAmount(value);
   }
 
   return(
     <form className="flex flex-col gap-2 items-end justify-center" onSubmit={handleSubmit} >
       <div className="flex items-center gap-2">
         <label htmlFor="amount">Amount</label>
-        <input type="number" className="border p-1 text-sm font-semibold rounded w-20" />
+        <input
+          type="number"
+          onChange={handleChange}
+          className="border p-1 text-sm font-semibold rounded w-20"
+        />
       </div>
       <div className="flex items-center">
         <input type="submit" value="Add" />
