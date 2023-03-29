@@ -8,8 +8,7 @@ const MealForm = ({onSubmitAmount}:MealFormProps) => {
   const [value, setValue] = useState(0);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>):void => {
-    const amount = e.target.value;
-    setValue(parseInt(amount));
+    setValue(parseInt(e.target.value));
   }
 
   const handleSubmit = (e: React.SyntheticEvent): void => {

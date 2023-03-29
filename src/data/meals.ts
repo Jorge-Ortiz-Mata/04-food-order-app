@@ -1,8 +1,8 @@
 type MealType = {
-  id: number,
+  readonly id: number,
   name: string,
   description: string,
-  price: number
+  readonly price: number
 }
 
 export const meals: MealType[] = [

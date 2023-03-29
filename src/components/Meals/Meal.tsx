@@ -1,16 +1,21 @@
+import { useContext } from 'react';
+import CartContext from '../../data/cart-context';
+
 import MealInfo from './MealInfo';
 import MealForm from './MealForm';
 
 interface MealProps {
+  id: number,
   name: string,
   description: string,
   price: number
 }
 
-const Meal = ({name, description, price}:MealProps) => {
+const Meal = ({id, name, description, price}:MealProps) => {
+  const cartCtx = useContext(CartContext);
 
   const handleSubmit = (amount: number): void => {
-    console.log(amount);
+    cartCtx.addToCart(id, name, price, amount);
   }
 
   return (
