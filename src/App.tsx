@@ -6,10 +6,6 @@ import MealsSection from "./components/Meals/MealsSection";
 
 function App() {
 
-  // function sayHi(): void {
-  //   console.log('Hello Fucking New World')
-  // }
-
   return (
     <>
       { ReactDOM.createPortal(<Modal />, document.getElementById('modal-root') as HTMLElement) }

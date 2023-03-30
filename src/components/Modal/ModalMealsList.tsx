@@ -13,11 +13,11 @@ const ModalMealsList = () => {
   }
 
   const addOneitem = (id: number):void => {
-    console.log(id)
+    cartCtx.addOneItem(id);
   }
 
-  const reduceOneitem = (id: number):void => {
-    console.log(id)
+  const remomveOneItem = (id: number):void => {
+    cartCtx.removeOneItem(id);
   }
 
   return(
@@ -31,7 +31,7 @@ const ModalMealsList = () => {
                   <span className="font-semibold">x{meal.amount}</span>
                   <div className="flex items-center gap-2">
                     <ModalMealAction symbol="-" onPress={addOneitem} id={meal.id} />
-                    <ModalMealAction symbol="+" onPress={reduceOneitem} id={meal.id} />
+                    <ModalMealAction symbol="+" onPress={remomveOneItem} id={meal.id} />
                   </div>
                 </div>
               )

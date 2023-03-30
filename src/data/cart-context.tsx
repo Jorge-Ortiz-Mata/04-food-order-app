@@ -14,6 +14,8 @@ type CartContextProps = {
   addToCart: (id: number, name: string, price: number, amount: number) => void,
   removeFromCart: () => void,
   showModal: () => void,
+  addOneItem: (id: number) => void,
+  removeOneItem: (id: number) => void
 }
 
 const CartContext = React.createContext<CartContextProps>({
@@ -22,7 +24,10 @@ const CartContext = React.createContext<CartContextProps>({
   itemsList: [],
   addToCart: ():void => {},
   removeFromCart: (): void => {},
-  showModal: ():void => {}
+  showModal: ():void => {},
+  addOneItem: ():void => {},
+  removeOneItem: ():void => {}
+
 });
 
 export const CartContextProvider = ({children}: any) => {
@@ -51,6 +56,16 @@ export const CartContextProvider = ({children}: any) => {
     setModal(!modal);
   }
 
+  const handleAddOneItem = (id: number):void => {
+    console.log('Adding one item');
+    console.log(id)
+  }
+
+  const handleRemoveOneItem = (id: number):void => {
+    console.log('Removing one item');
+    console.log(id)
+  }
+
   return(
     <CartContext.Provider
       value={{
@@ -59,7 +74,9 @@ export const CartContextProvider = ({children}: any) => {
         itemsList: itemsList,
         addToCart: handleAddToCart,
         removeFromCart: handleRemoveFromCart,
-        showModal: handleModal
+        showModal: handleModal,
+        addOneItem: handleAddOneItem,
+        removeOneItem: handleRemoveOneItem,
       }}
     >
       {children}
