@@ -8,26 +8,33 @@ interface MealObject {
 }
 
 type CartContextProps = {
-  readonly hasItems: boolean,
+  modal: boolean
+  hasItems: boolean,
+  itemsList: MealObject[],
   addToCart: (id: number, name: string, price: number, amount: number) => void,
   removeFromCart: () => void,
-  itemsList: MealObject[]
+  showModal: () => void,
 }
 
 const CartContext = React.createContext<CartContextProps>({
+  modal: false,
   hasItems: false,
+  itemsList: [],
   addToCart: ():void => {},
   removeFromCart: (): void => {},
-  itemsList: []
+  showModal: ():void => {}
 });
 
 export const CartContextProvider = ({children}: any) => {
+  const [modal, setModal] = useState(false);
   const [hasItems, setHasItems] = useState(false);
   const [itemsList, setItemsList] = useState<MealObject[]>([]);
 
   useEffect(() => {
-    console.log(itemsList)
-    console.log(itemsList.length)
+    if (itemsList.length > 0)
+      setHasItems(true)
+    else
+      setHasItems(false);
   }, [itemsList])
 
   const handleAddToCart = (id: number, name: string, price: number, amount: number):void => {
@@ -40,8 +47,21 @@ export const CartContextProvider = ({children}: any) => {
     console.log('Removing from the cart');
   }
 
+  const handleModal = (): void => {
+    setModal(!modal);
+  }
+
   return(
-    <CartContext.Provider value={{addToCart: handleAddToCart, removeFromCart: handleRemoveFromCart, hasItems: hasItems, itemsList: itemsList }}>
+    <CartContext.Provider
+      value={{
+        modal: modal,
+        hasItems: hasItems,
+        itemsList: itemsList,
+        addToCart: handleAddToCart,
+        removeFromCart: handleRemoveFromCart,
+        showModal: handleModal
+      }}
+    >
       {children}
     </CartContext.Provider>
   )
