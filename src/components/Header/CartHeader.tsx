@@ -14,7 +14,7 @@ const CartHeader = () => {
   }
 
   return(
-    <div className="flex gap-5 items-center border px-5 py-3 rounded-lg bg-orange-900 cursor-pointer" onClick={handleClick}>
+    <div className="flex gap-2 items-center border px-3 py-2 rounded-lg bg-orange-900 cursor-pointer" onClick={handleClick}>
       <CartIcon />
       <CartText />
       <CartNumber />

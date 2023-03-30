@@ -24,17 +24,20 @@ const ModalMealsList = () => {
     <>
       <div className="flex flex-col">
           {
-            cartCtx.itemsList.map(meal => {
-              return (
-                <div className="flex items-center justify-between w-96 my-3 py-1 border-b-2" key={meal.id}>
-                  <MealInfo key={meal.id} name={meal.name} description='' price={meal.price} />
-                  <span className="font-semibold">x{meal.amount}</span>
-                  <div className="flex items-center gap-2">
-                    <ModalMealAction symbol="-" onPress={addOneitem} id={meal.id} />
-                    <ModalMealAction symbol="+" onPress={remomveOneItem} id={meal.id} />
+            cartCtx.itemsList.map((meal) => {
+              if(meal.amount > 0)
+                return (
+                  <div className="flex items-center justify-between w-96 my-3 py-1 border-b-2" key={meal.id}>
+                    <MealInfo key={meal.id} name={meal.name} description='' price={meal.price} />
+                    <span className="font-semibold">x{meal.amount}</span>
+                    <div className="flex items-center gap-2">
+                      <ModalMealAction symbol="-" onPress={addOneitem} id={meal.id} />
+                      <ModalMealAction symbol="+" onPress={remomveOneItem} id={meal.id} />
+                    </div>
                   </div>
-                </div>
-              )
+                )
+              else
+                return <></>;
             })
           }
       </div>

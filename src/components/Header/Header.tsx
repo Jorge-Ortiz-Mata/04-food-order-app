@@ -8,7 +8,7 @@ type HeaderProps = {
 const Header = ({title}:HeaderProps) => {
 
   return(
-    <nav className='flex bg-orange-600 justify-between p-5 items-center'>
+    <nav className='bg-orange-600 fixed w-full flex  items-center justify-between py-2 px-4'>
       <TitleHeader title='Food Order App' />
       <CartHeader />
     </nav>

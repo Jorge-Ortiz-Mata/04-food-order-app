@@ -1,17 +1,11 @@
 import React, { useState, useEffect } from "react";
-
-interface MealObject {
-  id: number,
-  name: string,
-  price: number,
-  amount: number
-}
+import { meals, MealType } from './meals';
 
 type CartContextProps = {
   modal: boolean
   hasItems: boolean,
-  itemsList: MealObject[],
-  addToCart: (id: number, name: string, price: number, amount: number) => void,
+  itemsList: MealType[],
+  addToCart: (id: number, amount: number) => void,
   removeFromCart: () => void,
   showModal: () => void,
   addOneItem: (id: number) => void,
@@ -27,13 +21,12 @@ const CartContext = React.createContext<CartContextProps>({
   showModal: ():void => {},
   addOneItem: ():void => {},
   removeOneItem: ():void => {}
-
 });
 
 export const CartContextProvider = ({children}: any) => {
   const [modal, setModal] = useState(false);
   const [hasItems, setHasItems] = useState(false);
-  const [itemsList, setItemsList] = useState<MealObject[]>([]);
+  const [itemsList, setItemsList] = useState<MealType[]>(meals);
 
   useEffect(() => {
     if (itemsList.length > 0)
@@ -42,10 +35,14 @@ export const CartContextProvider = ({children}: any) => {
       setHasItems(false);
   }, [itemsList])
 
-  const handleAddToCart = (id: number, name: string, price: number, amount: number):void => {
-    setItemsList((prevState):MealObject[] => {
-      return [...prevState, {id: id, name: name, price: price, amount: amount}]
-    });
+  const handleAddToCart = (id: number, amount: number):void => {
+    const updateItems = itemsList.map((item):MealType => {
+      if(item.id === id)
+       item.amount += amount;
+      return item;
+    })
+
+    setItemsList(updateItems);
   }
 
   const handleRemoveFromCart = ():void => {
@@ -57,13 +54,23 @@ export const CartContextProvider = ({children}: any) => {
   }
 
   const handleAddOneItem = (id: number):void => {
-    console.log('Adding one item');
-    console.log(id)
+    const updateItems = itemsList.map((item):MealType => {
+      if(item.id === id)
+       item.amount -= 1;
+      return item;
+    });
+
+    setItemsList(updateItems);
   }
 
   const handleRemoveOneItem = (id: number):void => {
-    console.log('Removing one item');
-    console.log(id)
+    const updateItems = itemsList.map((item):MealType => {
+      if(item.id === id)
+       item.amount += 1;
+      return item;
+    });
+
+    setItemsList(updateItems);
   }
 
   return(

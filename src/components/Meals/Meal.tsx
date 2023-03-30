@@ -15,7 +15,7 @@ const Meal = ({id, name, description, price}:MealProps) => {
   const cartCtx = useContext(CartContext);
 
   const handleSubmit = (amount: number): void => {
-    cartCtx.addToCart(id, name, price, amount);
+    cartCtx.addToCart(id, amount);
   }
 
   return (
