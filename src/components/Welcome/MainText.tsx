@@ -5,10 +5,10 @@ const MainText:React.FC = () => {
       <h2 className="text-white font-semibold text-3xl">The Food Order App - React and Typescript</h2>
       <h3 className="text-white font-semibold text-xl">Delicous Food, Delivered to you</h3>
       <p className="text-white font-semibold text-base">
-        Choose your favorite food and added to your list.
+        Choose your favorite food and added to your list. - Updated
       </p>
       <p className="text-white font-semibold textbase">
-        You can add as many meals as you want.
+        You can add as many meals as you want. - Updated
       </p>
     </div>
   )
